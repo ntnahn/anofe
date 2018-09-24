@@ -4,6 +4,8 @@ import ProductAdd from "views/Product/ProductAdd.jsx";
 import Notifications from "views/Notifications/Notifications.jsx";
 import UserPage from "views/UserPage/UserPage.jsx";
 import withAuthen from '../authentication/authen';
+import {withConsumer} from "../AppEntry";
+import UserPageContainer from "../views/UserPage/UserPageContainer";
 
 var dashRoutes = [
   {
@@ -18,14 +20,14 @@ var dashRoutes = [
     path: "/dashboard/user-page",
     name: "User Profile",
     icon: "users_single-02",
-    component: UserPage
+    component: UserPageContainer
   },
-  {
-    path: "/dashboard/shop",
-    name: "Shop",
-    icon: "ui-1_bell-53",
-    component: Notifications
-  },
+  // {
+  //   path: "/dashboard/shop",
+  //   name: "Shop",
+  //   icon: "ui-1_bell-53",
+  //   component: Notifications
+  // },
   { redirect: true, path: "/dashboard", pathTo: "/dashboard/product", name: "Shop" }
 ];
 export default dashRoutes;

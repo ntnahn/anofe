@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 const VariableContext = React.createContext();
 export const VariableConsumer = VariableContext.Consumer;
 
+export const withConsumer = (component)=> <VariableConsumer>{(props)=><component {...props} />}</VariableConsumer>
+
 
 class AppEntry extends Component {
 	constructor(props) {
@@ -15,7 +17,8 @@ class AppEntry extends Component {
 			updateUserInfo: this.updateUserInfo,
 			alertMessage: '',
 			alertType: 'success',
-			updateAlertMessage: this.updateAlertMessage
+			updateAlertMessage: this.updateAlertMessage,
+			onLogout : this.onLogout
 		};
 		this.timeoutIns = null;
 	}
@@ -33,6 +36,11 @@ class AppEntry extends Component {
 		}
 		// setTimeout(() => this.setState({ alertMessage: 'hahahah' }), 3000)
 	}
+
+	onLogout = ()=>{
+		localStorage.removeItem('token');
+		window.location.href='/';
+	};
 
 	updateAlertMessage = (type, message) => {
 		this.setState({

@@ -16,7 +16,7 @@ import {
 	InputGroupText,
 	InputGroupAddon,
 	Input,
-  Badge
+	Badge
 } from "reactstrap";
 
 import { VariableConsumer } from '../../AppEntry';
@@ -167,7 +167,7 @@ class Header extends React.Component {
 							className="simple-text logo-mini"
 						>
 							<div className="logo-img">
-								<img src={logo} alt="react-logo" />
+								<img src={logo} alt="react-logo"/>
 							</div>
 						</a>
 						<a
@@ -192,35 +192,64 @@ class Header extends React.Component {
 								</InputGroupAddon>
 							</InputGroup>
 						</form>
-						<Nav navbar>
-							<NavItem>
-								<Link to="/cart" className="nav-link">
-									<i className="now-ui-icons shopping_bag-16"/>
-									<Badge color="secondary">10</Badge>
-									<p>
-										<span className="d-lg-none d-md-block">Cart</span>
-									</p>
-								</Link>
-							</NavItem>
-							<Dropdown
-								isOpen={this.state.dropdownAccountOpen}
-								toggle={e => this.dropdownAccountToggle(e)}
-							>
-								<DropdownToggle caret nav>
-									<i className="now-ui-icons users_single-02"/>
-									<p>
-										<span className="d-lg-none d-md-block">Account</span>
-									</p>
-								</DropdownToggle>
-								<DropdownMenu>
-									<Link to="/login"><DropdownItem><span className="text-primary">Login</span></DropdownItem></Link>
-									<DropdownItem>Logout</DropdownItem>
-								</DropdownMenu>
-							</Dropdown>
-							<VariableConsumer>
-								{(value)=>console.log(value)}
-							</VariableConsumer>
-						</Nav>
+
+						<VariableConsumer>
+							{
+								({ userInfo, chosenProducts }) =>
+									<Nav navbar>
+										<NavItem>
+											<Link to="/cart" className="nav-link">
+												<i className="now-ui-icons shopping_bag-16"/>
+												<Badge color="secondary">{chosenProducts.length}</Badge>
+												<p>
+													<span className="d-lg-none d-md-block">Cart</span>
+												</p>
+											</Link>
+										</NavItem>
+										<Dropdown
+											isOpen={this.state.dropdownAccountOpen}
+											toggle={e => this.dropdownAccountToggle(e)}
+										>
+											<DropdownToggle caret nav>
+												<i className="now-ui-icons users_single-02"/>
+												<p>
+													<span className="d-lg-none d-md-block">Account</span>
+												</p>
+											</DropdownToggle>
+
+											<DropdownMenu right>
+												{!userInfo._id ?
+													<DropdownItem>
+														<Link to="/login" style={{ color: 'black' }}><span>Login</span></Link>
+													</DropdownItem>
+													:
+													<DropdownItem>
+														<Link to="/dashboard" style={{ color: 'black' }}><span>Manage products</span></Link>
+													</DropdownItem>
+												}
+												{!userInfo._id ?
+													<DropdownItem>
+														<Link to="/create-shop">
+														<span className="text-primary">
+															Register shop
+														</span>
+														</Link>
+													</DropdownItem> : null
+												}
+												<DropdownItem>
+													<span style={{ cursor: 'pointer' }}
+																onClick={() => {
+																}}
+													>
+														Logout
+													</span>
+												</DropdownItem>
+											</DropdownMenu>
+										</Dropdown>
+									</Nav>
+							}
+						</VariableConsumer>
+
 					</Collapse>
 				</Container>
 			</Navbar>
