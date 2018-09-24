@@ -16,6 +16,7 @@ import { PanelHeader } from "components";
 
 import { thead, tbody } from "variables/general";
 import { Link } from "react-router-dom";
+import {callAPI} from "../../apiCaller";
 
 const dummyHeadData = [
   'Thumbnail',
@@ -46,9 +47,24 @@ const dummyBodyData = [
 ];
 
 class Product extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      products: []
+    };
+  }
   handleRemoveProduct = (item) => {
     console.log('remove product', item);
   };
+
+  loadProducts() {
+    callAPI('/api/')
+  }
+
+  componentDidMount() {
+
+  }
+
   render() {
     return (
       <div>
@@ -81,7 +97,7 @@ class Product extends React.Component {
                     </tr>
                     </thead>
                     <tbody>
-                    {dummyBodyData.map((item, key) => {
+                    {this.state.products.map((item, key) => {
                       return (
                         <tr key={key}>
                           <td>

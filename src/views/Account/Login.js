@@ -14,6 +14,9 @@ class Login extends Component {
 
 	componentDidMount() {
 		window.addEventListener('keyup', this.handleEnter)
+		if ( localStorage.getItem('token') ) {
+			this.props.history.push('/dashboard/product');
+		}
 	}
 
 	handleEnter = (e) => {
@@ -98,7 +101,7 @@ class Login extends Component {
 						<VariableConsumer>
               {
                 ({ updateAlertMessage }) => {
-                  return <Button color="primary" onClick={this.onClickLogin.bind(this, updateAlertMessage)}
+                  return <Button disabled={this.state.requesting} color="primary" onClick={this.onClickLogin.bind(this, updateAlertMessage)}
 																style={{ width: '80%', margin: '15px auto' }}>Login</Button>
                 }
               }
