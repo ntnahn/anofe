@@ -3,7 +3,6 @@ import ProductEdit from "views/Product/ProductEdit.jsx";
 import ProductAdd from "views/Product/ProductAdd.jsx";
 import Notifications from "views/Notifications/Notifications.jsx";
 import UserPage from "views/UserPage/UserPage.jsx";
-import withAuthen from '../authentication/authen';
 
 var dashRoutes = [
   {

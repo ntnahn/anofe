@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import { Button } from 'reactstrap';
 import { PanelHeader } from 'components';
+import { VariableConsumer } from "../../AppEntry";
+import {callAPI} from "../../apiCaller";
 
 class Login extends Component {
 	state = {
@@ -15,11 +17,10 @@ class Login extends Component {
 	}
 
 	handleEnter = (e) => {
-		console.log(e.keyCode);
 		if (e.keyCode === 13) {
 			this.onClickLogin()
 		}
-	}
+	};
 
 	componentWillUnmount() {
 		window.removeEventListener('keyup', this.handleEnter)
@@ -37,11 +38,29 @@ class Login extends Component {
 		})
 	};
 
-	onClickLogin = () => {
+	onClickLogin = (updateAlertMessage) => {
 		this.setState({
 			requesting: true
 		}, () => {
-      this.props.history.push('/dashboard');
+      callAPI('/api/shop/login', 'post', {
+      	name: this.state.username,
+				password: this.state.password
+			}).then(res => {
+				console.log('res', res);
+				if ( res && res.success ) {
+          localStorage.setItem('token', res.data._id);
+          setTimeout(() => {
+            window.location.href = '/dashboard/product';
+					}, 1000);
+				} else {
+					updateAlertMessage('warning', 'Username or password is not correct');
+          this.setState({requesting: false})
+				}
+			}).catch(error => {
+				console.log('error', error);
+        updateAlertMessage('warning', 'Username or password is not correct');
+        this.setState({requesting: false})
+			});
 		})
 	};
 
@@ -51,6 +70,7 @@ class Login extends Component {
 				<PanelHeader size="sm"/>
 				<div style={{ marginTop: 20 }}>
 					<h3 style={{ marginBottom: 5 }}>Login as shop</h3>
+
 					<form style={{ maxWidth: 400, padding: 20, margin: '0px auto', display: 'flex', flexDirection: 'column' }}>
 						<label htmlFor="username">Username</label>
 						<input id="username"
@@ -65,6 +85,7 @@ class Login extends Component {
 									 }}/>
 						<label htmlFor="password">Password</label>
 						<input id="password"
+									 type="password"
 									 value={this.state.password}
 									 onChange={this.onChangePassword}
 									 style={{
@@ -74,8 +95,14 @@ class Login extends Component {
 										 border: '1px solid rgba(0,0,0,0.3)',
 										 padding: 5
 									 }}/>
-						<Button color="primary" onClick={this.onClickLogin}
-										style={{ width: '80%', margin: '15px auto' }}>Login</Button>
+						<VariableConsumer>
+              {
+                ({ updateAlertMessage }) => {
+                  return <Button color="primary" onClick={this.onClickLogin.bind(this, updateAlertMessage)}
+																style={{ width: '80%', margin: '15px auto' }}>Login</Button>
+                }
+              }
+						</VariableConsumer>
 					</form>
 				</div>
 			</div>

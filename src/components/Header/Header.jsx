@@ -218,7 +218,9 @@ class Header extends React.Component {
 								</DropdownMenu>
 							</Dropdown>
 							<VariableConsumer>
-								{(value)=>console.log(value)}
+								{(value)=>{
+									//console.log(value)
+								}}
 							</VariableConsumer>
 						</Nav>
 					</Collapse>
