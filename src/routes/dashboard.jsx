@@ -15,16 +15,16 @@ var dashRoutes = [
   { hidden: true, path: "/dashboard/product-edit/:id", name: "Edit product", component: ProductEdit },
   { hidden: true, path: "/dashboard/product-add", name: "Add new product", component: ProductAdd },
   {
-    path: "/dashboard/shop",
-    name: "Shop",
-    icon: "ui-1_bell-53",
-    component: Notifications
-  },
-  {
     path: "/dashboard/user-page",
     name: "User Profile",
     icon: "users_single-02",
     component: UserPage
+  },
+  {
+    path: "/dashboard/shop",
+    name: "Shop",
+    icon: "ui-1_bell-53",
+    component: Notifications
   },
   { redirect: true, path: "/dashboard", pathTo: "/dashboard/product", name: "Shop" }
 ];

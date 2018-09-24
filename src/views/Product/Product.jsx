@@ -46,6 +46,9 @@ const dummyBodyData = [
 ];
 
 class Product extends React.Component {
+  handleRemoveProduct = (item) => {
+    console.log('remove product', item);
+  };
   render() {
     return (
       <div>
@@ -89,8 +92,11 @@ class Product extends React.Component {
                             {item.price} $
                           </td>
                           <td className="text-center">
-                            <a href={`product-edit/${item._id}`}>
+                            <a href={`product-edit/${item._id}`} style={{marginRight: '10px'}} id={`product-${item._id}`}>
                               <i className="now-ui-icons ui-1_settings-gear-63"/>
+                            </a>
+                            <a href="javasript:void(0)" onClick={this.handleRemoveProduct.bind(this, item)}>
+                              <i className="now-ui-icons ui-1_simple-remove"/>
                             </a>
                           </td>
                         </tr>

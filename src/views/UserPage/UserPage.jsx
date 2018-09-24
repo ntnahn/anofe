@@ -6,9 +6,45 @@ import { PanelHeader, FormInputs, CardAuthor, CardSocials } from "components";
 import userBackground from "assets/img/bg5.jpg";
 import userAvatar from "assets/img/mike.jpg";
 
-class User extends React.Component {
+class UserPage extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      firstName: 'Mikey',
+      lastName: 'Ckron',
+      ethAddress: '',
+      knAddress: '',
+    };
+  }
+
+  loadUserInfo() {
+    // todo: call api to get user info and fill to form
+  }
+
+  onFirstNameChange = (e) => {
+    this.setState({
+      firstName: e.target.value
+    })
+  };
+  onLastNameChange = (e) => {
+    this.setState({
+      lastName: e.target.value
+    })
+  };
+  onEthAddressChange = (e) => {
+    this.setState({
+      ethAddress: e.target.value
+    })
+  };
+  onKnAddressChange = (e) => {
+    this.setState({
+      knAddress: e.target.value
+    })
+  };
+
   updateProfile = () => {
-    console.log('updateProfile')
+    console.log('updateProfile', this.state);
+    // todo: call api to update user function
   };
 
   render() {
@@ -25,37 +61,6 @@ class User extends React.Component {
                 <CardBody>
                   <form>
                     <FormInputs
-                      ncols={[
-                        "col-md-5 pr-1",
-                        "col-md-3 px-1",
-                        "col-md-4 pl-1"
-                      ]}
-                      proprieties={[
-                        {
-                          label: "Company (disabled)",
-                          inputProps: {
-                            type: "text",
-                            disabled: true,
-                            defaultValue: "Creative Code Inc."
-                          }
-                        },
-                        {
-                          label: "Username",
-                          inputProps: {
-                            type: "text",
-                            defaultValue: "michael23"
-                          }
-                        },
-                        {
-                          label: "Email address",
-                          inputProps: {
-                            type: "email",
-                            placeholder: "Email"
-                          }
-                        }
-                      ]}
-                    />
-                    <FormInputs
                       ncols={["col-md-6 pr-1", "col-md-6 pl-1"]}
                       proprieties={[
                         {
@@ -63,7 +68,7 @@ class User extends React.Component {
                           inputProps: {
                             type: "text",
                             placeholder: "First Name",
-                            defaultValue: "Mike"
+                            onChange: this.onFirstNameChange
                           }
                         },
                         {
@@ -71,7 +76,7 @@ class User extends React.Component {
                           inputProps: {
                             type: "text",
                             placeholder: "Last Name",
-                            defaultValue: "Andrew"
+                            onChange: this.onLastNameChange
                           }
                         }
                       ]}
@@ -80,44 +85,11 @@ class User extends React.Component {
                       ncols={["col-md-12"]}
                       proprieties={[
                         {
-                          label: "Address",
+                          label: "ETH Wallet Address",
                           inputProps: {
                             type: "text",
-                            placeholder: "Home Address",
-                            defaultValue:
-                              "Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
-                          }
-                        }
-                      ]}
-                    />
-                    <FormInputs
-                      ncols={[
-                        "col-md-4 pr-1",
-                        "col-md-4 px-1",
-                        "col-md-4 pl-1"
-                      ]}
-                      proprieties={[
-                        {
-                          label: "City",
-                          inputProps: {
-                            type: "text",
-                            defaultValue: "Bucharest",
-                            placeholder: "City"
-                          }
-                        },
-                        {
-                          label: "Country",
-                          inputProps: {
-                            type: "text",
-                            defaultValue: "Romania",
-                            placeholder: "Country"
-                          }
-                        },
-                        {
-                          label: "Postal Code",
-                          inputProps: {
-                            type: "number",
-                            placeholder: "ZIP Code"
+                            placeholder: "Your ETH Wallet Address",
+                            onChange: this.onEthAddressChange
                           }
                         }
                       ]}
@@ -126,14 +98,11 @@ class User extends React.Component {
                       ncols={["col-md-12"]}
                       proprieties={[
                         {
-                          label: "About Me",
+                          label: "KN Wallet Address",
                           inputProps: {
-                            type: "textarea",
-                            rows: "4",
-                            cols: "80",
-                            defaultValue:
-                              "Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.",
-                            placeholder: "Here can be your description"
+                            type: "text",
+                            placeholder: "Your KN Wallet Address",
+                            onChange: this.onKnAddressChange
                           }
                         }
                       ]}
@@ -190,4 +159,4 @@ class User extends React.Component {
   }
 }
 
-export default User;
+export default UserPage;
