@@ -54,3 +54,14 @@
     opacity: 1;
     color: #FFFFFF;
 }
+
+.alert{
+    position: fixed;
+    display: inline-block;
+    right:0;
+    top: 100px;
+}
+
+.copyright{
+    background: #222222 !important;
+}

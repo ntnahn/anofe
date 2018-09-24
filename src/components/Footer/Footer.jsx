@@ -23,7 +23,7 @@ class Footer extends React.Component {
               </li>
             </ul>
           </nav>
-          <div className="copyright">
+          <div className="copyright" style={{background:'white'}}>
             &copy; {1900 + new Date().getYear()}, Designed by{" "}
             <a
               href="https://www.invisionapp.com"
