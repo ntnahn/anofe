@@ -34,7 +34,6 @@ class Shop extends React.Component {
 	}
 
 	render() {
-		console.log('userRoutes', userRoutes);
 		return (
 			<div className="wrapper">
 				<div className="main-panel" ref="mainPanel" style={{ width: '100%', position: 'relative' }}>

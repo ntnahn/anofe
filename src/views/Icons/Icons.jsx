@@ -112,7 +112,7 @@ class Icons extends React.Component {
 																<div style={{ marginTop: 5 }}>
 																	<VariableConsumer>
 																		{({updateChosenProducts}) => <Button color="primary"
-																																			 onClick={() => updateChosenProducts('add',data)}>Purchase</Button>}
+																																			 onClick={() => updateChosenProducts('add',data)}>Add to cart</Button>}
 																	</VariableConsumer>
 																</div>
 															</div>

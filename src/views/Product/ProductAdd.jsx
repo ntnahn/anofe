@@ -27,10 +27,6 @@ class ProductAdd extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.getProductDetail();
-  }
-
   addProduct = () => {
     console.log('this.state', this.state);
   };
