@@ -18,7 +18,8 @@ class AppEntry extends Component {
 			alertMessage: '',
 			alertType: 'success',
 			updateAlertMessage: this.updateAlertMessage,
-			onLogout : this.onLogout
+			onLogout : this.onLogout,
+			isLogin: false,
 		};
 		this.timeoutIns = null;
 	}
@@ -34,11 +35,21 @@ class AppEntry extends Component {
 				console.log('err parsing cart', err)
 			}
 		}
+
+		if (localStorage.getItem('user')){
+			const user = JSON.parse(localStorage.getItem('user'));
+			if (user._id){
+				this.setState({
+					isLogin: true,
+					userInfo: user
+				})
+			}
+		}
 		// setTimeout(() => this.setState({ alertMessage: 'hahahah' }), 3000)
 	}
 
 	onLogout = ()=>{
-		localStorage.removeItem('token');
+		localStorage.removeItem('user');
 		window.location.href='/';
 	};
 
@@ -110,7 +121,15 @@ class AppEntry extends Component {
 	updateUserInfo = (info) => {
 		this.setState({
 			userInfo: info
+		},()=>{
+			if (this.state.userInfo._id){
+				this.setState({
+					isLogin: true
+				})
+			}
+			localStorage.setItem('user', JSON.stringify(this.state.userInfo));
 		})
+
 	};
 
 	render() {

@@ -33,7 +33,7 @@ class Sidebar extends React.Component {
 
   handleLogout = () => {
     console.log('handleLogout');
-    localStorage.removeItem('token');
+    localStorage.removeItem('user');
     this.props.history.push('/');
   };
 

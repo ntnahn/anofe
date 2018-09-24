@@ -142,18 +142,18 @@ class Header extends React.Component {
 			>
 				<Container fluid>
 					<div className="navbar-wrapper">
-						<div className="navbar-toggle">
-							<button
-								type="button"
-								ref="sidebarToggle"
-								className="navbar-toggler"
-								onClick={() => this.openSidebar()}
-							>
-								<span className="navbar-toggler-bar bar1"/>
-								<span className="navbar-toggler-bar bar2"/>
-								<span className="navbar-toggler-bar bar3"/>
-							</button>
-						</div>
+						{/*<div className="navbar-toggle">*/}
+							{/*<button*/}
+								{/*type="button"*/}
+								{/*ref="sidebarToggle"*/}
+								{/*className="navbar-toggler"*/}
+								{/*onClick={() => this.openSidebar()}*/}
+							{/*>*/}
+								{/*<span className="navbar-toggler-bar bar1"/>*/}
+								{/*<span className="navbar-toggler-bar bar2"/>*/}
+								{/*<span className="navbar-toggler-bar bar3"/>*/}
+							{/*</button>*/}
+						{/*</div>*/}
 						<NavbarBrand href="/">{this.getBrand()}</NavbarBrand>
 					</div>
 					<NavbarToggler onClick={this.toggle}>

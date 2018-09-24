@@ -62,7 +62,7 @@ class Product extends React.Component {
   };
 
   loadProducts() {
-    const shop = localStorage.getItem('token');
+    const shop = JSON.parse(localStorage.getItem('user'))._id;
     callAPI('/api/product/'+shop, 'get').then(res => {
       console.log('res', res);
       if ( res.success ) {

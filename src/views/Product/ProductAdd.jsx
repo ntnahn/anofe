@@ -35,10 +35,11 @@ class ProductAdd extends React.Component {
     this.setState({requesting: true}, () => {
       callAPI('/api/product/create', 'post', {
         ...this.state,
-        shop: localStorage.getItem('token')
+        shop: JSON.parse(localStorage.getItem('user'))._id
       }).then(res => {
         if ( res.success ) {
           alert('Add product success');
+          this.props.history.push('dashboard')
         } else {
           alert('Add product failed');
         }
@@ -145,14 +146,14 @@ class ProductAdd extends React.Component {
                         }
                       ]}
                     />
-                    <FormGroup>
-                      <Label for="exampleSelect">Select type</Label>
-                      <Input type="select" name="select" id="exampleSelect" onChange={this.handleTypeChange}
-                      style={{height: '32px'}}>
-                        <option value="know">Know</option>
-                        <option value="eth">ETH</option>
-                      </Input>
-                    </FormGroup>
+                    {/*<FormGroup>*/}
+                      {/*<Label for="exampleSelect">Select type</Label>*/}
+                      {/*<Input type="select" name="select" id="exampleSelect" onChange={this.handleTypeChange}*/}
+                      {/*>*/}
+                        {/*<option value="know">Know</option>*/}
+                        {/*<option value="eth">ETH</option>*/}
+                      {/*</Input>*/}
+                    {/*</FormGroup>*/}
                   </form>
                   <Row>
                     <Col md={12} xs={12}>

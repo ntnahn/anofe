@@ -24,7 +24,7 @@ class UserPage extends React.Component {
 	}
 
 	componentDidMount() {
-		if (localStorage.getItem('token')) {
+		if (localStorage.getItem('user')) {
 			this.loadUserInfo();
 			this.setState({
 				isNew: false
@@ -37,7 +37,7 @@ class UserPage extends React.Component {
 	}
 
 	loadUserInfo() {
-		// todo: call api to get user info and fill to form
+
 	}
 
 	onChangeName = (e) => {
@@ -90,7 +90,7 @@ class UserPage extends React.Component {
 			eth: this.state.ethAddress,
 		}).then((res) => {
 			if (res.success){
-
+				this.props.updateUserInfo(res.data);
 			}
 		})
 	};

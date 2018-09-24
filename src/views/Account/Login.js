@@ -14,7 +14,7 @@ class Login extends Component {
 
 	componentDidMount() {
 		window.addEventListener('keyup', this.handleEnter)
-		if ( localStorage.getItem('token') ) {
+		if ( localStorage.getItem('user') ) {
 			this.props.history.push('/dashboard/product');
 		}
 	}
@@ -49,19 +49,18 @@ class Login extends Component {
       	name: this.state.username,
 				password: this.state.password
 			}).then(res => {
-				console.log('res', res);
 				if ( res && res.success ) {
-          localStorage.setItem('token', res.data._id);
+					console.log(res.data);
+					localStorage.setItem('user', JSON.stringify(res.data));
           setTimeout(() => {
             window.location.href = '/dashboard/product';
 					}, 1000);
 				} else {
-					updateAlertMessage('warning', 'Username or password is not correct');
+					updateAlertMessage && updateAlertMessage('warning', 'Username or password is not correct');
           this.setState({requesting: false})
 				}
 			}).catch(error => {
-				console.log('error', error);
-        updateAlertMessage('warning', 'Username or password is not correct');
+				updateAlertMessage && updateAlertMessage('warning', 'Username or password is not correct');
         this.setState({requesting: false})
 			});
 		})
@@ -84,7 +83,8 @@ class Login extends Component {
 										 borderRadius: 3,
 										 outline: 'none',
 										 border: '1px solid rgba(0,0,0,0.3)',
-										 padding: 5
+										 padding: 5,
+										 textAlign:'center'
 									 }}/>
 						<label htmlFor="password">Password</label>
 						<input id="password"
@@ -96,12 +96,14 @@ class Login extends Component {
 										 borderRadius: 3,
 										 outline: 'none',
 										 border: '1px solid rgba(0,0,0,0.3)',
-										 padding: 5
+										 padding: 5,
+
+										 textAlign:'center'
 									 }}/>
 						<VariableConsumer>
               {
                 ({ updateAlertMessage }) => {
-                  return <Button disabled={this.state.requesting} color="primary" onClick={this.onClickLogin.bind(this, updateAlertMessage)}
+                  return <Button disabled={this.state.requesting} color="primary" onClick={()=>this.onClickLogin(updateAlertMessage)}
 																style={{ width: '80%', margin: '15px auto' }}>Login</Button>
                 }
               }
