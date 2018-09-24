@@ -75,3 +75,27 @@
     border-radius: 20px;
     background-color: #00bbff;
 }
+
+.cart-quality-change-btn-left, .cart-quality-change-btn-left:focus {
+    background: transparent;
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+    height: 28px;
+    padding-bottom: 0;
+    outline: none;
+}
+.cart-quality-change-btn-right, .cart-quality-change-btn-right:focus {
+    background: transparent;
+    border-left: none;
+    border-radius: 0 4px 4px 0;
+    height: 28px;
+    padding-bottom: 0;
+    outline: none;
+}
+.cart-quality-change-input {
+    background: transparent;
+    border: 1px solid #bababa;
+    height: 28px;
+    padding: 0;
+    text-align: center;
+}

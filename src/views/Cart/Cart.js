@@ -55,27 +55,23 @@ class Cart extends Component {
 							<td>{prod.quantity}</td>
 							<td>{prod.price} KN</td>
 							<td>
-								<input className="span1" style={{ maxWidth: 120 }} placeholder="1"
+								<button type="button" className="cart-quality-change-btn-left" onClick={() => updateChosenProducts('subtract', prod)}>
+									-
+								</button>
+								<input className="span1 cart-quality-change-input" style={{ maxWidth: 32 }} placeholder="1"
 											 id="appendedInputButtons"
 											 size="16" type="text" value={prod.purchased} readOnly/>
-								<div className="input-append" style={{ marginLeft: 2 }}>
-									<button className="btn btn-mini" type="button"
-													onClick={() => updateChosenProducts('subtract', prod)}
-									>
-										-
-									</button>
-									<button className="btn btn-mini" type="button"
-													onClick={() => updateChosenProducts('add', prod)}
-									>
-										+
-									</button>
-									<button className="btn btn-mini btn-danger" type="button"
-													onClick={() => updateChosenProducts('delete', prod)}>
-										<span className="now-ui-icons ui-1_simple-remove"/>
-									</button>
-								</div>
+								<button type="button" className="cart-quality-change-btn-right" onClick={() => updateChosenProducts('add', prod)}>
+									+
+								</button>
 							</td>
 							<td>{prod.price * prod.purchased} KN</td>
+							<td>
+								<button className="btn btn-mini btn-danger" type="button"
+												onClick={() => updateChosenProducts('delete', prod)}>
+									<span className="now-ui-icons ui-1_simple-remove"/>
+								</button>
+							</td>
 						</tr>
           )}
 					</tbody>
