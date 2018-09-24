@@ -65,3 +65,13 @@
 .copyright{
     background: #222222 !important;
 }
+
+.payment-method {
+    padding: 8px 8px 8px 20px;
+    margin: 4px;
+}
+
+.selected-method {
+    border-radius: 20px;
+    background-color: #00bbff;
+}

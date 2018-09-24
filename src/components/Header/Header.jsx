@@ -15,7 +15,8 @@ import {
 	InputGroup,
 	InputGroupText,
 	InputGroupAddon,
-	Input
+	Input,
+  Badge
 } from "reactstrap";
 
 import { VariableConsumer } from '../../AppEntry';
@@ -162,7 +163,7 @@ class Header extends React.Component {
 					</NavbarToggler>
 					<div className="justify-content-start">
 						<a
-							href="https://github.com/ntnahn/anofe"
+							href="/"
 							className="simple-text logo-mini"
 						>
 							<div className="logo-img">
@@ -195,7 +196,7 @@ class Header extends React.Component {
 							<NavItem>
 								<Link to="/cart" className="nav-link">
 									<i className="now-ui-icons shopping_bag-16"/>
-									<span>10</span>
+									<Badge color="secondary">10</Badge>
 									<p>
 										<span className="d-lg-none d-md-block">Cart</span>
 									</p>
