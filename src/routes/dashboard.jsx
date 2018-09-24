@@ -16,12 +16,12 @@ var dashRoutes = [
   },
   { hidden: true, path: "/dashboard/product-edit/:id", name: "Edit product", component: ProductEdit },
   { hidden: true, path: "/dashboard/product-add", name: "Add new product", component: ProductAdd },
-  {
-    path: "/dashboard/user-page",
-    name: "User Profile",
-    icon: "users_single-02",
-    component: UserPageContainer
-  },
+  // {
+  //   path: "/dashboard/user-page",
+  //   name: "User Profile",
+  //   icon: "users_single-02",
+  //   component: UserPageContainer
+  // },
   // {
   //   path: "/dashboard/shop",
   //   name: "Shop",

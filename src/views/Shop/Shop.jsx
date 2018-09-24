@@ -5,6 +5,7 @@ import { PanelHeader } from "components";
 
 // import icons from "variables/icons";
 import {VariableConsumer} from '../../AppEntry'
+import { callAPI } from "../../apiCaller";
 
 const dummyData = [
 	{
@@ -70,6 +71,25 @@ const dummyData = [
 ];
 
 class Shop extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			listProducts: [],
+		}
+	}
+
+	componentDidMount() {
+		console.log('111')
+		callAPI('api/product/getAllProduct', 'get').then((res) => {
+			console.log(res);
+			if (res.success) {
+				this.setState({
+					listProducts: res.data
+				})
+			}
+		})
+	}
+
 
 	render() {
 		return (
@@ -86,7 +106,7 @@ class Shop extends React.Component {
 								</CardHeader>
 								<CardBody className="all-icons">
 									<Row>
-										{dummyData.map((data, key) => {
+										{this.state.listProducts.map((data, key) => {
 											return (
 												<Col
 													lg={4}
@@ -99,7 +119,7 @@ class Shop extends React.Component {
 													<div className="font-icon-detail" style={{ padding: 5 }}>
 														<div style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'column' }}>
 															<div>
-																<img src={data.image} alt="Product sell"/>
+																<img src={data.image} alt="Product sell" style={{maxHeight: 200}}/>
 															</div>
 															<div className="info" style={{ marginTop: 5 }}>
 																<div style={{ fontSize: 20, marginTop: 5 }}><strong>{data.name}</strong></div>

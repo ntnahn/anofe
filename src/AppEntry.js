@@ -66,6 +66,12 @@ class AppEntry extends Component {
 	};
 
 	updateChosenProducts = (type = 'add', item) => {
+		if (type === 'removeAll'){
+			this.setState({
+				chosenProducts:[]
+			},()=>this.updateLocalStorage());
+			return;
+		}
 		if (type === 'add') {
 			const itemIndex = this.state.chosenProducts.findIndex((prod) => prod._id === item._id);
 			if (itemIndex === -1) {

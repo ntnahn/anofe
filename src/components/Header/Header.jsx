@@ -182,16 +182,16 @@ class Header extends React.Component {
 						navbar
 						className="justify-content-end"
 					>
-						<form>
-							<InputGroup className="no-border">
-								<Input placeholder="Search..."/>
-								<InputGroupAddon addonType="append">
-									<InputGroupText>
-										<i className="now-ui-icons ui-1_zoom-bold"/>
-									</InputGroupText>
-								</InputGroupAddon>
-							</InputGroup>
-						</form>
+						{/*<form>*/}
+							{/*<InputGroup className="no-border">*/}
+								{/*<Input placeholder="Search..."/>*/}
+								{/*<InputGroupAddon addonType="append">*/}
+									{/*<InputGroupText>*/}
+										{/*<i className="now-ui-icons ui-1_zoom-bold"/>*/}
+									{/*</InputGroupText>*/}
+								{/*</InputGroupAddon>*/}
+							{/*</InputGroup>*/}
+						{/*</form>*/}
 
 						<VariableConsumer>
 							{
@@ -239,6 +239,8 @@ class Header extends React.Component {
 												<DropdownItem>
 													<span style={{ cursor: 'pointer' }}
 																onClick={() => {
+																	localStorage.removeItem('user');
+																	window.location.href='/'
 																}}
 													>
 														Logout

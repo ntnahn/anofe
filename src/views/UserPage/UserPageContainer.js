@@ -8,7 +8,7 @@ class UserPageContainer extends Component {
 	render() {
 		return (
 			<VariableConsumer>
-				{(props) => <UserPage {...props}/>}
+				{(props) => <UserPage {...props} {...this.props}/>}
 			</VariableConsumer>
 		);
 	}

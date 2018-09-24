@@ -4,7 +4,8 @@ import { Card, CardHeader, CardBody, Row, Col, Button } from "reactstrap";
 import { PanelHeader } from "components";
 
 // import icons from "variables/icons";
-import {VariableConsumer} from '../../AppEntry'
+import { VariableConsumer } from '../../AppEntry'
+import { callAPI } from "../../apiCaller";
 
 const dummyData = [
 	{
@@ -70,6 +71,25 @@ const dummyData = [
 ];
 
 class Icons extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			listProducts: [],
+		}
+	}
+
+	componentDidMount() {
+		console.log('111')
+		callAPI('product/getAllProduct', 'get').then((res) => {
+			console.log(res);
+			if (res.success) {
+				this.setState({
+					listProducts: res.data
+				})
+			}
+		})
+	}
+
 
 	render() {
 		return (
@@ -86,7 +106,7 @@ class Icons extends React.Component {
 								</CardHeader>
 								<CardBody className="all-icons">
 									<Row>
-										{dummyData.map((data, key) => {
+										{this.state.listProducts.map((data, key) => {
 											return (
 												<Col
 													lg={4}
@@ -111,8 +131,9 @@ class Icons extends React.Component {
 																</div>
 																<div style={{ marginTop: 5 }}>
 																	<VariableConsumer>
-																		{({updateChosenProducts}) => <Button color="primary"
-																																			 onClick={() => updateChosenProducts('add',data)}>Add to cart</Button>}
+																		{({ updateChosenProducts }) => <Button color="primary"
+																																					 onClick={() => updateChosenProducts('add', data)}>Add
+																			to cart</Button>}
 																	</VariableConsumer>
 																</div>
 															</div>

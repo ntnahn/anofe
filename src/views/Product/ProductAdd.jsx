@@ -100,6 +100,7 @@ class ProductAdd extends React.Component {
                 </CardHeader>
                 <CardBody>
                   <input type="file" multiple={false}
+												 accept="image/*"
                          ref={node => this.fileUpload = node}
                          onChange={this.handleFileChange}
                          className="d-none"/>
