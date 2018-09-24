@@ -16,11 +16,14 @@ import { PanelHeader } from "components";
 
 import { thead, tbody } from "variables/general";
 import { Link } from "react-router-dom";
+import {callAPI} from "../../apiCaller";
 
 const dummyHeadData = [
   'Thumbnail',
   'Name',
+  'Type',
   'Price',
+  'Quantity',
   'Actions'
 ];
 
@@ -46,9 +49,37 @@ const dummyBodyData = [
 ];
 
 class Product extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      products: [],
+      loading: true,
+      message: ''
+    };
+  }
   handleRemoveProduct = (item) => {
     console.log('remove product', item);
   };
+
+  loadProducts() {
+    const shop = localStorage.getItem('token');
+    callAPI('/api/product/'+shop, 'get').then(res => {
+      console.log('res', res);
+      if ( res.success ) {
+        this.setState({
+          products: res.data
+        })
+      }
+      this.setState({loading: false});
+    }).catch(error => {
+      this.setState({loading: false});
+    });
+  }
+
+  componentDidMount() {
+    this.loadProducts();
+  }
+
   render() {
     return (
       <div>
@@ -70,7 +101,7 @@ class Product extends React.Component {
                     <thead className="text-primary">
                     <tr>
                       {dummyHeadData.map((prop, key) => {
-                        if (key === thead.length - 1)
+                        if (key === dummyHeadData.length - 1)
                           return (
                             <th key={key} className="text-center">
                               {prop}
@@ -81,15 +112,21 @@ class Product extends React.Component {
                     </tr>
                     </thead>
                     <tbody>
-                    {dummyBodyData.map((item, key) => {
+                    {this.state.products.map((item, key) => {
                       return (
                         <tr key={key}>
                           <td>
-                            <a href={`product-edit/${item._id}`}><img width="80px" height="80px" src={item.thumb} alt="Product thumb" /></a>
+                            <a href={`product-edit/${item._id}`}><img width="80px" height="80px" src={item.image} alt="Product thumb" /></a>
                           </td>
                           <td><a href={`product-edit/${item._id}`}>{item.name}</a></td>
                           <td>
+                            {item.type}
+                          </td>
+                          <td>
                             {item.price} $
+                          </td>
+                          <td>
+                            {item.quantity}
                           </td>
                           <td className="text-center">
                             <a href={`product-edit/${item._id}`} style={{marginRight: '10px'}} id={`product-${item._id}`}>

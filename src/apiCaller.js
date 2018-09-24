@@ -16,7 +16,6 @@ export async function callAPI(url, option, data) {
 				'Content-Type': parsedOption.contentType || 'application/json',
 			},
 		});
-		console.log(response);
 		return response.data
 	} catch (err) {
 		if (err.response) return err.response.data
