@@ -21,6 +21,7 @@ import {
 import { VariableConsumer } from '../../AppEntry';
 
 import dashboardRoutes from "routes/dashboard.jsx";
+import logo from "logo-white.svg";
 
 class Header extends React.Component {
 	constructor(props) {
@@ -159,6 +160,22 @@ class Header extends React.Component {
 						<span className="navbar-toggler-bar navbar-kebab"/>
 						<span className="navbar-toggler-bar navbar-kebab"/>
 					</NavbarToggler>
+					<div className="justify-content-start">
+						<a
+							href="https://github.com/ntnahn/anofe"
+							className="simple-text logo-mini"
+						>
+							<div className="logo-img">
+								<img src={logo} alt="react-logo" />
+							</div>
+						</a>
+						<a
+							href="/"
+							className="simple-text logo-normal"
+						>
+							ANO Shop
+						</a>
+					</div>
 					<Collapse
 						isOpen={this.state.isOpen}
 						navbar
@@ -176,30 +193,14 @@ class Header extends React.Component {
 						</form>
 						<Nav navbar>
 							<NavItem>
-								<Link to="#pablo" className="nav-link">
-									<i className="now-ui-icons media-2_sound-wave"/>
+								<Link to="/cart" className="nav-link">
+									<i className="now-ui-icons shopping_bag-16"/>
+									<span>10</span>
 									<p>
-										<span className="d-lg-none d-md-block">Stats</span>
+										<span className="d-lg-none d-md-block">Cart</span>
 									</p>
 								</Link>
 							</NavItem>
-							<Dropdown
-								nav
-								isOpen={this.state.dropdownOpen}
-								toggle={e => this.dropdownToggle(e)}
-							>
-								<DropdownToggle caret nav>
-									<i className="now-ui-icons location_world"/>
-									<p>
-										<span className="d-lg-none d-md-block">Some Actions</span>
-									</p>
-								</DropdownToggle>
-								<DropdownMenu right>
-									<DropdownItem tag="a">Action</DropdownItem>
-									<DropdownItem tag="a">Another Action</DropdownItem>
-									<DropdownItem tag="a">Something else here</DropdownItem>
-								</DropdownMenu>
-							</Dropdown>
 							<Dropdown
 								isOpen={this.state.dropdownAccountOpen}
 								toggle={e => this.dropdownAccountToggle(e)}
@@ -211,7 +212,7 @@ class Header extends React.Component {
 									</p>
 								</DropdownToggle>
 								<DropdownMenu>
-									<DropdownItem>Login</DropdownItem>
+									<Link to="/login"><DropdownItem><span className="text-primary">Login</span></DropdownItem></Link>
 									<DropdownItem>Logout</DropdownItem>
 								</DropdownMenu>
 							</Dropdown>

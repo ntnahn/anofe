@@ -6,7 +6,8 @@ import {
   CardTitle,
   Row,
   Col,
-  Table
+  Table,
+  Button
 } from "reactstrap";
 // react plugin used to create charts
 // function that returns a color based on an interval of numbers
@@ -14,6 +15,7 @@ import {
 import { PanelHeader } from "components";
 
 import { thead, tbody } from "variables/general";
+import { Link } from "react-router-dom";
 
 const dummyHeadData = [
   'Thumbnail',
@@ -53,7 +55,12 @@ class Product extends React.Component {
             <Col xs={12}>
               <Card>
                 <CardHeader>
-                  <CardTitle tag="h4">Products list</CardTitle>
+                  <CardTitle tag="h4" className="float-left">Products list</CardTitle>
+                  <Link to="/dashboard/product-add">
+                    <Button className="float-right">
+                      <i className="now-ui-icons ui-1_simple-add" />
+                    </Button>
+                  </Link>
                 </CardHeader>
                 <CardBody>
                   <Table responsive>

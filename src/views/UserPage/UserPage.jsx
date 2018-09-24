@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardHeader, CardBody, Row, Col } from "reactstrap";
+import { Card, CardHeader, CardBody, Row, Col, Button } from "reactstrap";
 
 import { PanelHeader, FormInputs, CardAuthor, CardSocials } from "components";
 
@@ -7,6 +7,10 @@ import userBackground from "assets/img/bg5.jpg";
 import userAvatar from "assets/img/mike.jpg";
 
 class User extends React.Component {
+  updateProfile = () => {
+    console.log('updateProfile')
+  };
+
   render() {
     return (
       <div>
@@ -135,6 +139,9 @@ class User extends React.Component {
                       ]}
                     />
                   </form>
+                  <Col md={12} xs={12}>
+                    <Button color="primary" onClick={this.updateProfile}>Update</Button>
+                  </Col>
                 </CardBody>
               </Card>
             </Col>

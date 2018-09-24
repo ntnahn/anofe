@@ -30,6 +30,11 @@ class Sidebar extends React.Component {
       ps.destroy();
     }
   }
+
+  handleLogout = () => {
+    console.log('handleLogout');
+  };
+
   render() {
     return (
       <div className="sidebar" data-color="blue">
@@ -43,10 +48,10 @@ class Sidebar extends React.Component {
             </div>
           </a>
           <a
-            href="https://www.creative-tim.com"
+            href="/"
             className="simple-text logo-normal"
           >
-            Shop mananger
+            Ano Shop
           </a>
         </div>
         <div className="sidebar-wrapper" ref="sidebar">
@@ -72,6 +77,12 @@ class Sidebar extends React.Component {
                 </li>
               );
             })}
+            <li className="active active-pro" style={{cursor: 'pointer'}} onClick={this.handleLogout}>
+              <div className="nav-link" >
+                <i className="now-ui-icons arrows-1_share-66 fa-rotate-90" />
+                <p className="text-white">Logout</p>
+              </div>
+            </li>
           </Nav>
         </div>
       </div>

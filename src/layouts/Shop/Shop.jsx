@@ -3,15 +3,15 @@ import React from "react";
 import PerfectScrollbar from "perfect-scrollbar";
 import { Route, Switch, Redirect } from "react-router-dom";
 
-import { Header, Footer, Sidebar } from "components";
+import { Header, Footer } from "components";
 
-import dashboardRoutes from "routes/dashboard.jsx";
+import userRoutes from "routes/user.jsx";
 import { Alert } from "reactstrap";
 import { VariableConsumer } from "../../AppEntry";
 
 var ps;
 
-class Dashboard extends React.Component {
+class Shop extends React.Component {
 	componentDidMount() {
 		if (navigator.platform.indexOf("Win") > -1) {
 			ps = new PerfectScrollbar(this.refs.mainPanel);
@@ -34,23 +34,13 @@ class Dashboard extends React.Component {
 	}
 
 	render() {
+		console.log('userRoutes', userRoutes);
 		return (
 			<div className="wrapper">
-				<Sidebar {...this.props} routes={dashboardRoutes}/>
-				<div className="main-panel" ref="mainPanel" style={{ position: 'relative' }}>
+				<div className="main-panel" ref="mainPanel" style={{ width: '100%', position: 'relative' }}>
+					<Header {...this.props} />
 					<Switch>
-						{dashboardRoutes.map((prop, key) => {
-							if (prop.collapse) {
-								return prop.views.map((prop2, key2) => {
-									return (
-										<Route
-											path={prop2.path}
-											component={prop2.component}
-											key={key2}
-										/>
-									);
-								});
-							}
+						{userRoutes.map((prop, key) => {
 							if (prop.redirect)
 								return <Redirect from={prop.path} to={prop.pathTo} key={key}/>;
 							return (
@@ -69,4 +59,4 @@ class Dashboard extends React.Component {
 	}
 }
 
-export default Dashboard;
+export default Shop;

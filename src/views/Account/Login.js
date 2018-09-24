@@ -41,7 +41,7 @@ class Login extends Component {
 		this.setState({
 			requesting: true
 		}, () => {
-
+      this.props.history.push('/dashboard');
 		})
 	};
 
