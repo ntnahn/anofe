@@ -46,13 +46,13 @@ class Sidebar extends React.Component {
             href="https://www.creative-tim.com"
             className="simple-text logo-normal"
           >
-            Creative Tim
+            Shop mananger
           </a>
         </div>
         <div className="sidebar-wrapper" ref="sidebar">
           <Nav>
             {this.props.routes.map((prop, key) => {
-              if (prop.redirect) return null;
+              if (prop.redirect || prop.hidden) return null;
               return (
                 <li
                   className={

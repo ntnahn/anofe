@@ -1,19 +1,20 @@
-import Dashboard from "views/Dashboard/Dashboard.jsx";
+import Product from "views/Product/Product.jsx";
+import ProductEdit from "views/Product/ProductEdit.jsx";
 import Notifications from "views/Notifications/Notifications.jsx";
 import Icons from "views/Icons/Icons.jsx";
 import Typography from "views/Typography/Typography.jsx";
 import TableList from "views/TableList/TableList.jsx";
 import Maps from "views/Maps/Maps.jsx";
-import Upgrade from "views/Upgrade/Upgrade.jsx";
 import UserPage from "views/UserPage/UserPage.jsx";
 
 var dashRoutes = [
   {
-    path: "/dashboard",
-    name: "Dashboard",
+    path: "/product",
+    name: "Products",
     icon: "design_app",
-    component: Dashboard
+    component: Product
   },
+  { hidden: true, path: "/product-edit/:id", name: "Product", component: ProductEdit },
   { path: "/icons", name: "Icons", icon: "design_image", component: Icons },
   { path: "/maps", name: "Maps", icon: "location_map-big", component: Maps },
   {
@@ -40,13 +41,6 @@ var dashRoutes = [
     icon: "design-2_ruler-pencil",
     component: Typography
   },
-  {
-    pro: true,
-    path: "/upgrade",
-    name: "Upgrade to PRO",
-    icon: "objects_spaceship",
-    component: Upgrade
-  },
-  { redirect: true, path: "/", pathTo: "/dashboard", name: "Dashboard" }
+  { redirect: true, path: "/", pathTo: "/404", name: "404: Page not found" }
 ];
 export default dashRoutes;
