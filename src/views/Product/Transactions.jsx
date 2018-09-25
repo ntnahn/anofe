@@ -138,38 +138,83 @@ class Transactions extends React.Component {
           <ModalHeader toggle={this.toggle}>Transaction detail</ModalHeader>
           <ModalBody>
             {
-              transaction && transaction.metadata && <Table responsive>
-                <tbody>
-                <tr>
-                  <td>ID</td>
-                  <td>{transaction._id}</td>
-                </tr>
-                <tr>
-                  <td>Timestamp</td>
-                  <td>{(new Date(transaction.metadata.time)).toLocaleString()}</td>
-                </tr>
-                <tr>
-                  <td>Sender</td>
-                  <td>{transaction.senderId}</td>
-                </tr>
-                <tr>
-                  <td>Recipient</td>
-                  <td>{transaction.recipientId}</td>
-                </tr>
-                <tr>
-                  <td>Amount</td>
-                  <td>{transaction.metadata.amount}</td>
-                </tr>
-                <tr>
-                  <td>Fee</td>
-                  <td>{transaction.metadata.fee}</td>
-                </tr>
-                <tr>
-                  <td>Shop name</td>
-                  <td>{transaction.metadata.shopName}</td>
-                </tr>
-                </tbody>
-              </Table>
+              transaction && transaction.metadata && <div>
+                <Table responsive>
+                  <tbody>
+                  <tr>
+                    <td>ID</td>
+                    <td>{transaction._id}</td>
+                  </tr>
+                  <tr>
+                    <td>Timestamp</td>
+                    <td>{(new Date(transaction.metadata.time)).toLocaleString()}</td>
+                  </tr>
+                  <tr>
+                    <td>Sender</td>
+                    <td>{transaction.senderId}</td>
+                  </tr>
+                  <tr>
+                    <td>Recipient</td>
+                    <td>{transaction.recipientId}</td>
+                  </tr>
+                  <tr>
+                    <td>Amount</td>
+                    <td>{transaction.metadata.amount}</td>
+                  </tr>
+                  <tr>
+                    <td>Fee</td>
+                    <td>{transaction.metadata.fee}</td>
+                  </tr>
+                  <tr>
+                    <td>Shop name</td>
+                    <td>{transaction.metadata.shopName}</td>
+                  </tr>
+                  </tbody>
+                </Table>
+                {
+                  transaction.metadata.arraySold && <div>
+                    <h2>Product sold</h2>
+                    <Table responsive>
+                      <thead className="text-primary">
+                      <tr>
+                        <th>ID</th>
+                        <th>Thumb</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Type</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      {transaction.metadata.arraySold.map((item, key) => {
+                        return (
+                          <tr key={key}>
+                            <td>
+                              {this.getShortText(item._id, 5)}
+                            </td>
+                            <td>
+                              <img src={item.image} width={80} height={80}/>
+                            </td>
+                            <td>
+                              {item.name}
+                            </td>
+                            <td>
+                              {item.price}
+                            </td>
+                            <td>
+                              {item.quantity}
+                            </td>
+                            <td>
+                              {item.type}
+                            </td>
+                          </tr>
+                        );
+                      })}
+                      </tbody>
+                    </Table>
+                  </div>
+                }
+              </div>
             }
           </ModalBody>
           <ModalFooter>
