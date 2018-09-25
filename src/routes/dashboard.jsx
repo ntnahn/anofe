@@ -1,4 +1,5 @@
 import Product from "views/Product/Product.jsx";
+import Transactions from "views/Product/Transactions.jsx";
 import ProductEdit from "views/Product/ProductEdit.jsx";
 import ProductAdd from "views/Product/ProductAdd.jsx";
 import Notifications from "views/Notifications/Notifications.jsx";
@@ -13,6 +14,12 @@ var dashRoutes = [
     name: "Products",
     icon: "design_app",
     component: Product
+  },
+  {
+    path: "/dashboard/transactions",
+    name: "Transactions",
+    icon: "design_app",
+    component: Transactions
   },
   { hidden: true, path: "/dashboard/product-edit/:id", name: "Edit product", component: ProductEdit },
   { hidden: true, path: "/dashboard/product-add", name: "Add new product", component: ProductAdd },

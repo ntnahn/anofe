@@ -80,10 +80,10 @@ class UserPage extends React.Component {
 	};
 
 	updateProfile = () => {
-		const str = this.state.isNew ? 'api/shop/create' : `api/shop/${this.state.shopId}`;
+		const str = 'api/shop/create';
 		callAPI(str, 'post', {
 			name: this.state.name,
-			password: this.state.isNew ? this.state.password : undefined,
+			password: this.state.password,
 			shop: this.state.shopName,
 			address: this.state.address,
 			wallet: this.state.knAddress,
@@ -104,7 +104,7 @@ class UserPage extends React.Component {
 						<Col md={12} xs={12}>
 							<Card>
 								<CardHeader>
-									<h5 className="title">{this.state.isNew ? 'Create shop' : 'Edit Profile'}</h5>
+									<h5 className="title">Create shop</h5>
 								</CardHeader>
 								<CardBody>
 									<form>
@@ -198,7 +198,7 @@ class UserPage extends React.Component {
 									</form>
 									<Col md={12} xs={12}>
 										<Button color="primary"
-														onClick={this.updateProfile}>{this.state.isNew ? 'Create' : 'Update'}</Button>
+														onClick={this.updateProfile}>Create</Button>
 									</Col>
 								</CardBody>
 							</Card>
