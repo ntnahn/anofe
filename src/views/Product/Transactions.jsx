@@ -86,11 +86,6 @@ class Transactions extends React.Component {
               <Card>
                 <CardHeader>
                   <CardTitle tag="h4" className="float-left">Transactions</CardTitle>
-                  <Link to="/dashboard/product-add">
-                    <Button className="float-right">
-                      <i className="now-ui-icons ui-1_simple-add" />
-                    </Button>
-                  </Link>
                 </CardHeader>
                 <CardBody>
                   <Table responsive>
